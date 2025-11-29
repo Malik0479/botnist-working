@@ -65,7 +65,7 @@ const Dashboard = () => {
       if (!session) return navigate('/auth');
 
       // 1. Call Backend to Start Automation
-      const response = await fetch('http://localhost:5000/api/scrape/start', {
+      const response = await fetch('${API_URL}/api/scrape/start', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const Dashboard = () => {
       if (!session) return;
   
       // Call DELETE endpoint
-      const response = await fetch(`http://localhost:5000/api/scrape/bot/${job_hash}`, {
+      const response = await fetch(`${API_URL}/api/scrape/bot/${job_hash}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${session.access_token}`

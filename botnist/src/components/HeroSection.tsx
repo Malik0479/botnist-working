@@ -50,7 +50,7 @@ const HeroSection = () => {
       }
 
       // 2. SEND TO BACKEND
-      const response = await fetch('http://localhost:5000/api/scrape/start', {
+      const response = await fetch('${API_URL}/api/scrape/start', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

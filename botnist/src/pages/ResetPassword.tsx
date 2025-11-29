@@ -81,7 +81,7 @@ const ResetPassword = () => {
     try {
       // --- BACKEND INTEGRATION ---
       // We send the new password AND the token to verify identity
-      const response = await fetch('http://localhost:5000/api/auth/update-password', {
+      const response = await fetch('${API_URL}/api/auth/update-password', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
