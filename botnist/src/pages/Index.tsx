@@ -7,29 +7,45 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. CHECK SESSION ON LOAD
-    // This handles the case where the user is already logged in
-    // or has just been redirected back from Google with the #access_token
-    const checkSession = async () => {
+    let mounted = true;
+
+    const handleAuthRedirect = async () => {
+      // 1. Check for Hash (OAuth Redirect)
+      // This happens immediately when Google sends you back
+      if (window.location.hash.includes("access_token")) {
+        console.log("OAuth Redirect detected...");
+        
+        // Wait a tiny bit for Supabase client to process the hash
+        await new Promise(r => setTimeout(r, 500));
+        
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session && mounted) {
+          console.log("Session established via OAuth");
+          navigate("/dashboard");
+          return;
+        }
+      }
+
+      // 2. Check Standard Session (Already logged in)
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        // If we have a session, go straight to dashboard
+      if (session && mounted) {
+        console.log("Existing session found");
         navigate("/dashboard");
       }
     };
 
-    checkSession();
+    handleAuthRedirect();
 
-    // 2. SET UP LISTENER
-    // This catches the exact moment Supabase processes the #hash token
+    // 3. Real-time Listener (The Backup)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session) {
+        console.log("Auth State Changed: Signed In");
         navigate("/dashboard");
       }
     });
 
-    // Cleanup listener when component unmounts
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
   }, [navigate]);
@@ -37,7 +53,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <HeroSection />
-      {/* You can add more landing page sections (Features, Footer) here */}
     </div>
   );
 };
