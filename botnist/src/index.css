@@ -1,0 +1,633 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light mode - White page, black navbar, dark green accents */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 142 76% 36%;
+
+    --radius: 0.75rem;
+
+    /* Custom light theme tokens */
+    --wood-primary: 142 76% 36%;
+    --wood-secondary: 142 60% 45%;
+    --wood-accent: 142 86% 28%;
+    --forest-primary: 0 0% 100%;
+    --forest-secondary: 0 0% 96.1%;
+    --forest-accent: 142 76% 36%;
+    --beige-text: 0 0% 0%;
+    --beige-muted: 0 0% 45.1%;
+
+    /* Navbar specific colors for light theme */
+    --navbar-bg: 0 0% 0%;
+    --navbar-text: 0 0% 100%;
+    --navbar-text-hover: 142 76% 36%;
+
+    /* Light gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--forest-primary)), hsl(var(--forest-secondary)), hsl(var(--forest-accent)));
+    --gradient-wood: linear-gradient(90deg, hsl(var(--wood-secondary)), hsl(var(--wood-primary)), hsl(var(--wood-accent)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--wood-accent)), hsl(var(--forest-accent)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--wood-primary) / 0.3), hsl(var(--wood-accent) / 0.3));
+
+    /* Light shadows */
+    --shadow-wood: 0 15px 40px -10px hsl(var(--wood-primary) / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--wood-accent) / 0.3);
+    --shadow-bright: 0 10px 50px -15px hsl(var(--wood-primary) / 0.4);
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Light theme custom colors for floating components */
+    --forest-dark: #e8f5e8;           /* light background */
+    --forest-dark-95: rgba(232,245,232,0.95);
+    --forest-dark-80: rgba(232,245,232,0.80);
+    --forest-dark-50: rgba(232,245,232,0.50);
+
+    --wood-dark: #228B22;             /* green accents */
+    --wood-dark-50: rgba(34,139,34,0.50);
+
+    --wood-brown: #2E8B57;           /* sea green accents */
+    --wood-brown-30: rgba(46,139,87,0.30);
+    --wood-brown-20: rgba(46,139,87,0.20);
+
+    --wood-light: #90EE90;           /* light green */
+
+    --cream: #2f2f2f;                /* dark text */
+    --cream-80: rgba(47,47,47,0.80);
+    --cream-60: rgba(47,47,47,0.60);
+
+    /* small helpers in case code uses them directly */
+    --text-forest-dark: var(--forest-dark);
+    --bg-wood-dark: var(--wood-dark);
+    --border-wood-brown: var(--wood-brown);
+  }
+
+  .dark {
+    /* Dark mode - Black page, white navbar, dark green accents */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 14.9%;
+    --ring: 142 76% 36%;
+
+    /* Dark theme custom tokens */
+    --wood-primary: 142 76% 36%;
+    --wood-secondary: 142 60% 30%;
+    --wood-accent: 142 86% 45%;
+    --forest-primary: 0 0% 0%;
+    --forest-secondary: 0 0% 14.9%;
+    --forest-accent: 142 76% 36%;
+    --beige-text: 0 0% 100%;
+    --beige-muted: 0 0% 70%;
+
+    /* Navbar specific colors for dark theme */
+    --navbar-bg: 0 0% 100%;
+    --navbar-text: 0 0% 0%;
+    --navbar-text-hover: 142 76% 36%;
+
+    /* Dark gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--forest-primary)), hsl(var(--forest-secondary)), hsl(var(--forest-accent)));
+    --gradient-wood: linear-gradient(90deg, hsl(var(--wood-secondary)), hsl(var(--wood-primary)), hsl(var(--wood-accent)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--wood-accent)), hsl(var(--forest-accent)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--wood-primary) / 0.3), hsl(var(--wood-accent) / 0.3));
+
+    /* Dark shadows */
+    --shadow-wood: 0 15px 40px -10px hsl(var(--wood-primary) / 0.4);
+    --shadow-glow: 0 0 30px hsl(var(--wood-accent) / 0.4);
+    --shadow-bright: 0 10px 50px -15px hsl(var(--wood-primary) / 0.6);
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Dark theme custom colors for floating components */
+    --forest-dark: #0a0a0a;           /* almost black background */
+    --forest-dark-95: rgba(10,10,10,0.95);
+    --forest-dark-80: rgba(10,10,10,0.80);
+    --forest-dark-50: rgba(10,10,10,0.50);
+
+    --wood-dark: #1a4a1a;             /* dark green accents */
+    --wood-dark-50: rgba(26,74,26,0.50);
+
+    --wood-brown: #2e7d32;           /* medium green accents */
+    --wood-brown-30: rgba(46,125,50,0.30);
+    --wood-brown-20: rgba(46,125,50,0.20);
+
+    --wood-light: #4caf50;           /* bright green */
+
+    --cream: #f5f5f5;                /* light text */
+    --cream-80: rgba(245,245,245,0.80);
+    --cream-60: rgba(245,245,245,0.60);
+
+    /* small helpers in case code uses them directly */
+    --text-forest-dark: var(--forest-dark);
+    --bg-wood-dark: var(--wood-dark);
+    --border-wood-brown: var(--wood-brown);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Bright wood-themed animations and patterns */
+  .wood-grain-pattern {
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(var(--wood-secondary) / 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--wood-accent) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(var(--forest-accent) / 0.12) 0%, transparent 50%),
+      linear-gradient(90deg, transparent 0%, hsl(var(--wood-primary) / 0.1) 50%, transparent 100%);
+    animation: woodGrain 15s ease-in-out infinite alternate;
+  }
+
+
+  .wood-pattern-container {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  overflow: visible; /* Changed from hidden */
+  z-index: 1;
+}
+
+.wood-grain {
+  position: absolute;
+  border-radius: 8px;
+  animation: woodFloat 8s ease-in-out infinite;
+  opacity: 0.6;
+  pointer-events: none; /* Add this */
+  z-index: 20; /* Add this */
+}
+
+.wood-grain-1 {
+  width: 120px;
+  height: 20px;
+  background: linear-gradient(90deg, var(--wood-brown), var(--wood-light));
+  top: 10%;
+  left: 20%;
+  animation-duration: 12s;
+}
+
+.wood-grain-2 {
+  width: 80px;
+  height: 15px;
+  background: linear-gradient(90deg, var(--wood-dark), var(--wood-brown));
+  top: 25%;
+  right: 15%;
+  animation-duration: 10s;
+}
+
+.wood-grain-3 {
+  width: 100px;
+  height: 18px;
+  background: linear-gradient(90deg, var(--wood-light), var(--wood-brown));
+  top: 40%;
+  left: 10%;
+  animation-duration: 14s;
+}
+
+.wood-grain-4 {
+  width: 90px;
+  height: 12px;
+  background: linear-gradient(90deg, var(--wood-brown), var(--wood-dark));
+  top: 55%;
+  right: 25%;
+  animation-duration: 11s;
+}
+
+.wood-grain-5 {
+  width: 110px;
+  height: 22px;
+  background: linear-gradient(90deg, var(--wood-dark), var(--wood-light));
+  top: 70%;
+  left: 25%;
+  animation-duration: 13s;
+}
+
+.wood-grain-6 {
+  width: 70px;
+  height: 16px;
+  background: linear-gradient(90deg, var(--wood-light), var(--wood-dark));
+  top: 85%;
+  right: 20%;
+  animation-duration: 9s;
+}
+
+.wood-grain-7 {
+  width: 85px;
+  height: 14px;
+  background: linear-gradient(90deg, var(--wood-brown), var(--wood-light));
+  top: 15%;
+  left: 50%;
+  animation-duration: 15s;
+}
+
+.wood-grain-8 {
+  width: 95px;
+  height: 19px;
+  background: linear-gradient(90deg, var(--wood-dark), var(--wood-brown));
+  top: 35%;
+  right: 5%;
+  animation-duration: 12s;
+}
+
+.wood-grain-9 {
+  width: 75px;
+  height: 13px;
+  background: linear-gradient(90deg, var(--wood-light), var(--wood-brown));
+  top: 50%;
+  left: 5%;
+  animation-duration: 10s;
+}
+
+.wood-grain-10 {
+  width: 105px;
+  height: 21px;
+  background: linear-gradient(90deg, var(--wood-brown), var(--wood-dark));
+  top: 65%;
+  right: 10%;
+  animation-duration: 14s;
+}
+
+.wood-grain-11 {
+  width: 65px;
+  height: 11px;
+  background: linear-gradient(90deg, var(--wood-dark), var(--wood-light));
+  top: 80%;
+  left: 15%;
+  animation-duration: 8s;
+}
+
+.wood-grain-12 {
+  width: 115px;
+  height: 24px;
+  background: linear-gradient(90deg, var(--wood-light), var(--wood-brown));
+  top: 5%;
+  right: 30%;
+  animation-duration: 16s;
+}
+
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatUpDown 6s ease-in-out infinite;
+  opacity: 0.4;
+  pointer-events: none; /* Add this */
+  z-index: 30; /* Add this */
+}
+
+.floating-element-1 {
+  width: 12px;
+  height: 12px;
+  background: var(--wood-light);
+  top: 20%;
+  left: 30%;
+  animation-duration: 7s;
+}
+
+.floating-element-2 {
+  width: 8px;
+  height: 8px;
+  background: var(--wood-brown);
+  top: 45%;
+  right: 20%;
+  animation-duration: 5s;
+}
+
+.floating-element-3 {
+  width: 10px;
+  height: 10px;
+  background: var(--wood-dark);
+  top: 60%;
+  left: 40%;
+  animation-duration: 8s;
+}
+
+.floating-element-4 {
+  width: 14px;
+  height: 14px;
+  background: var(--wood-light);
+  top: 30%;
+  right: 35%;
+  animation-duration: 6s;
+}
+
+.floating-element-5 {
+  width: 6px;
+  height: 6px;
+  background: var(--wood-brown);
+  top: 75%;
+  left: 20%;
+  animation-duration: 9s;
+}
+
+.floating-element-6 {
+  width: 9px;
+  height: 9px;
+  background: var(--wood-dark);
+  top: 10%;
+  left: 60%;
+  animation-duration: 7s;
+}
+
+.floating-element-7 {
+  width: 11px;
+  height: 11px;
+  background: var(--wood-light);
+  top: 85%;
+  right: 15%;
+  animation-duration: 5s;
+}
+
+.floating-element-8 {
+  width: 7px;
+  height: 7px;
+  background: var(--wood-brown);
+  top: 50%;
+  right: 40%;
+  animation-duration: 8s;
+}
+
+
+@keyframes woodFloat {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(10px, -15px) rotate(2deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-10px, -25px) rotate(-2deg);
+    opacity: 0.9;
+  }
+}
+
+
+@layer utilities {
+  .bg-forest-dark { background-color: var(--forest-dark); }
+  .bg-forest-medium { background-color: var(--forest-medium); }
+  .bg-wood-dark { background-color: var(--wood-dark); }
+  .bg-wood-brown { background-color: var(--wood-brown); }
+  .bg-wood-light { background-color: var(--wood-light); }
+  
+  .text-forest-dark { color: var(--forest-dark); }
+  .text-forest-medium { color: var(--forest-medium); }
+  .text-wood-dark { color: var(--wood-dark); }
+  .text-wood-brown { color: var(--wood-brown); }
+  .text-wood-light { color: var(--wood-light); }
+  .text-cream { color: var(--cream); }
+  
+  .border-wood-brown { border-color: var(--wood-brown); }
+  .border-wood-light { border-color: var(--wood-light); }
+  .ring-wood-light { --tw-ring-color: var(--wood-light); }
+}
+
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translate(0px, 0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(0px, -30px);
+    opacity: 1;
+  }
+}
+
+/* Ensure elements are visible on all backgrounds */
+.wood-grain, .floating-element {
+  mix-blend-mode: lighten;
+  filter: brightness(1.2) contrast(1.1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .wood-grain {
+    width: calc(100% - 40px);
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wood-pattern-container {
+    height: 300px;
+  }
+  
+  .wood-grain {
+    max-width: 150px;
+  }
+  
+  .floating-element {
+    transform: scale(0.8);
+  }
+}
+
+
+
+  @keyframes woodGrain {
+    0% { transform: translateX(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateX(15px) rotate(2deg); opacity: 1; }
+  }
+
+  .hero-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Button hover box animations */
+  .btn-hover-box {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-hover-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--wood-accent) / 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+  }
+
+  .btn-hover-box:hover::before {
+    left: 100%;
+  }
+
+  .btn-hover-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  .btn-hover-box:hover::after {
+    opacity: 1;
+  }
+
+  .btn-hover-box:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-bright);
+  }
+
+  /* Glowing border animation */
+  .glow-border {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--wood-primary)), hsl(var(--wood-accent)));
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+  }
+
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, hsl(var(--wood-accent)), hsl(var(--forest-accent)), hsl(var(--wood-primary)));
+    border-radius: var(--radius);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  /* Navbar hover box animations */
+  .navbar-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navbar-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, hsl(var(--wood-primary) / 0.15), hsl(var(--wood-accent) / 0.2));
+    transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+    border-radius: 0.375rem;
+  }
+
+  .navbar-hover:hover::before {
+    left: 0;
+  }
+
+  .navbar-hover:hover {
+    color: hsl(var(--navbar-text-hover)) !important;
+    transform: translateY(-1px);
+  }
+
+  .navbar-btn-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navbar-btn-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, hsl(var(--wood-accent) / 0.8), hsl(var(--wood-primary)));
+    transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  .navbar-btn-hover:hover::before {
+    left: 0;
+  }
+
+  .navbar-btn-hover:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+  }
+
+
+  
+}
+
