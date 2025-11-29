@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client"; // Kept only for setSession
 import { useToast } from "@/hooks/use-toast";
-
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -82,7 +82,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
     try {
       // --- BACKEND INTEGRATION ---
-      const response = await fetch('${API_URL}/api/auth/login', {
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signInData)
@@ -122,7 +122,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
     try {
       // --- BACKEND INTEGRATION ---
-      const response = await fetch('${API_URL}/api/auth/signup', {
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signUpData)
@@ -156,7 +156,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     try {
       // --- BACKEND INTEGRATION ---
       // Redirect the browser directly to your backend OAuth route
-      window.location.href = '${API_URL}/api/auth/google';
+      window.location.href = `${API_URL}/api/auth/google`;
     } catch (error) {
       toast({
         title: "Google Sign Up Error",
@@ -173,7 +173,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
 
     try {
       // --- BACKEND INTEGRATION ---
-      const response = await fetch('${API_URL}/api/auth/reset-password', {
+      const response = await fetch(`${API_URL}/api/auth/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: forgotEmail })

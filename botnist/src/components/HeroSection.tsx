@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight, Link, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const HeroSection = () => {
   const [url, setUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +50,7 @@ const HeroSection = () => {
       }
 
       // 2. SEND TO BACKEND
-      const response = await fetch('${API_URL}/api/scrape/start', {
+      const response = await fetch(`${API_URL}/api/scrape/start`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

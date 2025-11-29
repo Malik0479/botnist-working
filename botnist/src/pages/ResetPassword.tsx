@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Lock, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client"; // Kept for setSession
 import { useToast } from "@/hooks/use-toast";
-
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -81,7 +81,7 @@ const ResetPassword = () => {
     try {
       // --- BACKEND INTEGRATION ---
       // We send the new password AND the token to verify identity
-      const response = await fetch('${API_URL}/api/auth/update-password', {
+      const response = await fetch(`${API_URL}/api/auth/update-password`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

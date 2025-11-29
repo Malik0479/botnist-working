@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 interface BotEntry {
   job_hash: string; // This is the API KEY
   target_url: string;
@@ -65,7 +65,7 @@ const Dashboard = () => {
       if (!session) return navigate('/auth');
 
       // 1. Call Backend to Start Automation
-      const response = await fetch('${API_URL}/api/scrape/start', {
+      const response = await fetch(`${API_URL}/api/scrape/start`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
